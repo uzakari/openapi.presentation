@@ -11,7 +11,7 @@ import { debounceTime, switchMap, tap } from 'rxjs/operators';
 })
 export class SearchComponent implements OnInit {
   searchForm: FormGroup = new FormGroup({});
-  searchContent: ISearchResultContent | undefined;
+  searchContent!: ISearchResultContent;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,16 +26,23 @@ export class SearchComponent implements OnInit {
   buildSearchForm() {
     this.searchForm = this.formBuilder.group({
       searchInput: ['', [Validators.required]],
-      citySelector: ['ALL', [Validators.required]],
     });
   }
 
-  getSearchResult(){
-    this.searchForm.get('searchInput')?.valueChanges
-      .pipe(
-        tap(a => console.log(a)),
+  getSearchResult() {
+    this.searchForm
+      .get('searchInput')
+      ?.valueChanges.pipe(
+        tap((a) => console.log(a)),
         debounceTime(400),
-        switchMap(searchTerm => this.searchService.getPeopelAndJokeResult(searchTerm))
-      ).subscribe({next:returnSearchContent => this.searchContent == returnSearchContent});
+        switchMap((searchTerm) =>
+          this.searchService.getPeopelAndJokeResult(searchTerm)
+        )
+      )
+      .subscribe({
+        next: (returnSearchContent) => {
+          this.searchContent = returnSearchContent;
+        },
+      });
   }
 }
