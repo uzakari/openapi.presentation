@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row grid-container">
+    <div class="col-md-10">
+      <div class="table">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Height</th>
+              <th>Hair Color</th>
+              <th>Skin Color</th>
+              <th>Eye Color</th>
+              <th>Birth Year</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let people of peopleDetals">
+              <td>{{ people.name }}</td>
+              <td>{{ people.height }}</td>
+              <td>{{ people.hair_color }}</td>
+              <td>{{ people.skin_color }}</td>
+              <td>{{ people.eye_color }}</td>
+              <td>{{ people.birth_year }}</td>
+            </tr>
+            <!-- <tr *ngIf="peopleDetals.length==0">
+              <td>&nbsp;</td>
+              <td colspan="7">No Records Found</td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

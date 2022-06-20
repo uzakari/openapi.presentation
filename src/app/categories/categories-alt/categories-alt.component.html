@@ -1,0 +1,24 @@
+
+<div class="categoryIndent">
+    <div class="card">
+        <div class="card-header">
+          {{ pageTitle }}
+        </div>
+      
+        <div class="card-body" *ngIf="categoriesInput != null">
+          <div class="list-group">
+            <button
+              type="button"
+              class="list-group-item"
+              *ngFor="let category of categoriesInput.categories"
+              [ngClass]="{active: category === (categoryDetail$ |async)?.Name}"
+              (click)="onSelected(category)">
+              {{ category }}
+            </button>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+

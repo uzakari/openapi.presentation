@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  externalService:{
+    baseUri:"https://localhost:7096"
+  },
+  chucknorisService:{
+    baseUri: "https://api.chucknorris.io"
+  }
 };
 
 /*
